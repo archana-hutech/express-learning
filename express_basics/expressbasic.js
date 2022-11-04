@@ -1,5 +1,8 @@
 const express = require('express');
 const app = express();
+const birds = require('./birds');
+
+app.use('/birds', birds)
 
 app.get('/', (req, res) => {
     res.send("welcome to simplelearn");
@@ -132,3 +135,20 @@ app.get('/exmple/d', [cb00, cb11], (req, res, next) => {
 }, (req, res) => {
     res.send('Hello from D!')
 })
+
+app.get('/exmple/json', (req, res) => {
+    //res.json(null)
+    //res.json({ user: 'tobi' })
+    res.status(500).json({ error: 'message' })
+})
+
+app.route('/book')
+    .get((req, res) => {
+        res.send('Get a random book')
+    })
+    .post((req, res) => {
+        res.send('Add a book')
+    })
+    .put((req, res) => {
+        res.send('Update the book')
+    })
